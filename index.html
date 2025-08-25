@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevQuiz - Aprenda HTML, CSS e JavaScript</title>
+  <meta name="description" content="Quiz interativo para aprender programação web: HTML, CSS, JavaScript. Teste seus conhecimentos, pratique e suba no ranking!">
+  <meta name="keywords" content="quiz de programação, aprender HTML, CSS, JavaScript, DevQuiz, programação iniciante, estudos web">
+  <meta name="author" content="Seu Nome">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Plataforma de revisão rápida e quizzes interativos de HTML, CSS e JavaScript." />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <meta property="og:title" content="DevQuiz - Aprenda HTML, CSS e JavaScript">
+  <meta property="og:description" content="Quiz interativo de programação web com níveis e ranking.">
+  <meta property="og:image" content="https://SEU_USUARIO.github.io/imagem-de-capa.png">
+  <meta property="og:url" content="https://SEU_USUARIO.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+</head>
+<body>
+  <header class="topbar">
+  <div class="brand">DevQuiz<span>.</span></div>
+
+  <!-- Ícone do menu (somente mobile) -->
+  <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+
+  <nav class="nav">
+    <button class="nav__btn" data-route="home">Início</button>
+    <button class="nav__btn" data-route="ranking">Ranking</button>
+    <button class="nav__btn" data-route="sobre">Sobre</button>
+    <a href="./pages/conteudo.html" class="nav__btn" style="text-decoration: none;">conteudo</a>
+  </nav>
+</header>
+
+
+
+  <main id="app">
+    <!-- INÍCIO -->
+    <section id="screen-home" class="screen active">
+      <div class="hero">
+        <h1>Revisão rápida de <span>HTML</span>, <span>CSS</span> e <span>JavaScript</span></h1>
+        <p>Teste seus conhecimentos com quizzes curtos, ganhe pontos e acompanhe seu progresso!</p>
+      </div>
+
+      <div class="ad ad--banner" aria-label="Espaço para anúncio">
+        <small>📢 Espaço para anúncio (Google Ads)</small>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>HTML</h3>
+          <p>Estrutura, semântica e acessibilidade.</p>
+          <button class="btn primary start-quiz" data-category="html">Começar</button>
+        </article>
+        <article class="card">
+          <h3>CSS</h3>
+          <p>Layout, responsividade e boas práticas.</p>
+          <button class="btn primary start-quiz" data-category="css">Começar</button>
+        </article>
+        <article class="card">
+          <h3>JavaScript</h3>
+          <p>Lógica, DOM e fundamentos modernos.</p>
+          <button class="btn primary start-quiz" data-category="js">Começar</button>
+        </article>
+        <article class="card">
+          <h3>Misturado</h3>
+          <p>Perguntas intercaladas de HTML, CSS e JS.</p>
+          <button class="btn primary start-quiz" data-category="mix">Começar</button>
+        </article>
+      </div>
+
+      <section class="stats">
+        <div class="stat">
+          <div class="stat__value" id="stat-points">0</div>
+          <div class="stat__label">Pontos (total)</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="stat-streak">0</div>
+          <div class="stat__label">Maior sequência</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="stat-quizzes">0</div>
+          <div class="stat__label">Quizzes concluídos</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="screen-quiz" class="screen">
+      <div class="quiz-header">
+        <button class="btn ghost" id="btn-back">&larr; Voltar</button>
+        <div class="quiz-info">
+          <span id="quiz-category">Categoria</span>
+          <span class="dot">•</span>
+          <span id="quiz-progress">0/0</span>
+        </div>
+        <div class="timer">
+          ⏱ <span id="timer">00</span>s
+        </div>
+      </div>
+
+      <div class="question-box">
+        <h2 id="question-text">Pergunta aqui</h2>
+        <ul id="answers" class="answers"></ul>
+        <div id="feedback" class="feedback"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn" id="btn-skip">Pular</button>
+        <button class="btn primary" id="btn-next" disabled>Próxima</button>
+      </div>
+
+      <div class="ad ad--box" aria-label="Espaço para anúncio">
+        <small>📢 Espaço para anúncio (Google Ads)</small>
+      </div>
+    </section>
+
+    <!-- RANKING -->
+    <section id="screen-ranking" class="screen">
+      <h2>Ranking (neste dispositivo)</h2>
+      <p>Seus melhores resultados ficam salvos no navegador.</p>
+      <div id="ranking-list" class="ranking-list"></div>
+      <button class="btn" id="btn-clear">Limpar histórico</button>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="screen-sobre" class="screen">
+      <h2>Sobre o DevQuiz</h2>
+      <p>Protótipo educacional focado em revisão rápida de HTML, CSS e JavaScript.</p>
+      <ul>
+        <li>Sem cadastro (por enquanto) — tudo salvo em LocalStorage.</li>
+        <li>Pronto para evoluir: login, trilhas por nível, desafios de código.</li>
+        <li>Design responsivo e acessível, com espaços para monetização.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> DevQuiz — Feito para quem aprende na prática.</small>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  
+<script>
+  // Abrir/fechar menu no mobile
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+    document.querySelector('.nav').classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
